@@ -1,0 +1,11 @@
+ name: JustCustomWoWStuff
+ version: 1.0.0
+ description: JustCustomWoWStuff woutwoot wanted
+ author: woutwoot
+ main: com.woutwoot.jcwows.Main
+ database: false
+
+ commands:
+   wow:
+     description: Main command for JustCustomWoWStuff.
+     usage: Syntax error! Try /twg help to find out more.
