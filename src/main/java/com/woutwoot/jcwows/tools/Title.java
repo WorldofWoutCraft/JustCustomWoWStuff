@@ -21,7 +21,7 @@ public class Title {
         for (Player p : server.getOnlinePlayers()) {
             server.dispatchCommand(server.getConsoleSender(), "title " + p.getName() + " title {text:\"" + title + "\", color:\"red\"}");
             if (subtitle != null)
-            server.dispatchCommand(server.getConsoleSender(), "title " + p.getName() + " subtitle {text:\"" + subtitle + "\", color:\"yellow\"}");
+                server.dispatchCommand(server.getConsoleSender(), "title " + p.getName() + " subtitle {text:\"" + subtitle + "\", color:\"white\"}");
         }
     }
 
