@@ -1,6 +1,7 @@
 package com.woutwoot.jcwows.commands;
 
-import com.woutwoot.jcwows.tools.Title;
+import com.woutwoot.jcwows.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -10,7 +11,7 @@ public class WoW_announcerestart extends WoW_Command {
 
     @Override
     public void process(CommandSender sender, String[] args) {
-        Title.showTitleToEveryone("SERVER RESTART", "We will be right back!");
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new RestartAnnouncer(), 0L, 100L);
     }
 
     @Override

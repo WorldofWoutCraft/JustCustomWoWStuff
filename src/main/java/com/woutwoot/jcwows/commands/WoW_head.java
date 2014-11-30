@@ -17,7 +17,11 @@ public class WoW_head extends WoW_Command {
             p = (Player) sender;
             ItemStack skull = new ItemStack(397, 1, (short) 3);
             SkullMeta meta = (SkullMeta) skull.getItemMeta();
-            meta.setOwner(args[0]);
+            if (args[0] != null) {
+                meta.setOwner(args[0]);
+            } else {
+                meta.setOwner(sender.getName());
+            }
             skull.setItemMeta(meta);
             p.getInventory().addItem(skull);
         } else {
@@ -27,6 +31,6 @@ public class WoW_head extends WoW_Command {
 
     @Override
     public void sendHelp(CommandSender sender) {
-
+        sender.sendMessage("/wow head (playername)");
     }
 }
