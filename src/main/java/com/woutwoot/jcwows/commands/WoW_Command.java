@@ -21,4 +21,5 @@ public abstract class WoW_Command {
 
     public abstract void process(CommandSender sender, String[] args);
 
+    public abstract void sendHelp(CommandSender sender);
 }

@@ -12,7 +12,7 @@ public class Title {
     public static void showTitle(Player p, String title, String subtitle){
         Server server = Main.getInstance().getServer();
         server.dispatchCommand(server.getConsoleSender(), "title " + p.getName() + " title {text:\"" + title +  "\", color:\"red\"}");
-        server.dispatchCommand(server.getConsoleSender(), "title " + p.getName() + " subtitle {text:\"" + title +  "\", color:\"yellow\"}");
+        server.dispatchCommand(server.getConsoleSender(), "title " + p.getName() + " subtitle {text:\"" + subtitle + "\", color:\"yellow\"}");
     }
 
 }

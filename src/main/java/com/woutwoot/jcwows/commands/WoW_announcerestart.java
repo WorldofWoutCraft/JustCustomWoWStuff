@@ -17,4 +17,9 @@ public class WoW_announcerestart extends WoW_Command {
         }
 
     }
+
+    @Override
+    public void sendHelp(CommandSender sender) {
+
+    }
 }

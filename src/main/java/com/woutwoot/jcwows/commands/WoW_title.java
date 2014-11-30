@@ -13,10 +13,18 @@ public class WoW_title extends WoW_Command {
     @Override
     public void process(CommandSender sender, String[] args) {
         for(Player p : Main.getInstance().getServer().getOnlinePlayers()){
-            if(p.getName().equalsIgnoreCase(args[0])){
+            if (args[0].equalsIgnoreCase("all")) {
                 Title.showTitle(p, args[1], args[2]);
+            } else {
+                if (p.getName().equalsIgnoreCase(args[0])) {
+                    Title.showTitle(p, args[1], args[2]);
+                }
             }
         }
+    }
+
+    @Override
+    public void sendHelp(CommandSender sender) {
 
     }
 }
