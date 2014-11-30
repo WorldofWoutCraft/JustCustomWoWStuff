@@ -12,6 +12,7 @@ public class Title {
     public static void showTitle(Player p, String title, String subtitle){
         Server server = Main.getInstance().getServer();
         server.dispatchCommand(server.getConsoleSender(), "title " + p.getName() + " title {text:\"" + title +  "\", color:\"red\"}");
+        if (subtitle != null)
         server.dispatchCommand(server.getConsoleSender(), "title " + p.getName() + " subtitle {text:\"" + subtitle + "\", color:\"yellow\"}");
     }
 
@@ -19,6 +20,7 @@ public class Title {
         Server server = Main.getInstance().getServer();
         for (Player p : server.getOnlinePlayers()) {
             server.dispatchCommand(server.getConsoleSender(), "title " + p.getName() + " title {text:\"" + title + "\", color:\"red\"}");
+            if (subtitle != null)
             server.dispatchCommand(server.getConsoleSender(), "title " + p.getName() + " subtitle {text:\"" + subtitle + "\", color:\"yellow\"}");
         }
     }
