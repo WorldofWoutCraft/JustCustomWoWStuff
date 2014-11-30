@@ -15,4 +15,12 @@ public class Title {
         server.dispatchCommand(server.getConsoleSender(), "title " + p.getName() + " subtitle {text:\"" + subtitle + "\", color:\"yellow\"}");
     }
 
+    public static void showTitleToEveryone(String title, String subtitle) {
+        Server server = Main.getInstance().getServer();
+        for (Player p : server.getOnlinePlayers()) {
+            server.dispatchCommand(server.getConsoleSender(), "title " + p.getName() + " title {text:\"" + title + "\", color:\"red\"}");
+            server.dispatchCommand(server.getConsoleSender(), "title " + p.getName() + " subtitle {text:\"" + subtitle + "\", color:\"yellow\"}");
+        }
+    }
+
 }
