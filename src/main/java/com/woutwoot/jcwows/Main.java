@@ -1,6 +1,7 @@
 package com.woutwoot.jcwows;
 
 import com.woutwoot.jcwows.commands.WoW_Command;
+import com.woutwoot.jcwows.mechanics.OpDeOp;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -13,14 +14,22 @@ import java.util.Arrays;
 public class Main extends JavaPlugin {
 
     private static Main instance;
+    private OpDeOp opDeop = new OpDeOp();
+
+    public static Main getInstance() {
+        return instance;
+    }
 
     @Override
     public void onEnable(){
         instance = this;
+        opDeop.loadWorldSettings();
+        this.getServer().getPluginManager().registerEvents(opDeop, this);
     }
 
-    public static Main getInstance(){
-        return instance;
+    @Override
+    public void onDisable() {
+        opDeop.saveWorldSettings();
     }
 
     @Override
