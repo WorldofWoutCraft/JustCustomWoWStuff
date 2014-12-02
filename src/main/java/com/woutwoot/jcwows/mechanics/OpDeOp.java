@@ -25,10 +25,12 @@ public class OpDeOp implements Listener {
         String uuid = event.getPlayer().getUniqueId().toString();
         String worldTo = event.getPlayer().getWorld().getName();
 
-        if (ops.get(worldTo).contains(name + "(" + uuid + ")")) {
-            event.getPlayer().setOp(true);
-        } else if (event.getPlayer().isOp()) {
-            event.getPlayer().setOp(false);
+        if (ops != null && !ops.isEmpty()) {
+            if (ops.get(worldTo).contains(name + "(" + uuid + ")")) {
+                event.getPlayer().setOp(true);
+            } else if (event.getPlayer().isOp()) {
+                event.getPlayer().setOp(false);
+            }
         }
     }
 
@@ -39,8 +41,9 @@ public class OpDeOp implements Listener {
         for (World w : Main.getInstance().getServer().getWorlds()) {
             File worldFolder = new File(dataFolder + File.separator + "worlds" + File.separator + w.getName());
             worldFolder.mkdirs();
-            File worldFile = new File(worldFolder + File.separator + "ops.txt");
             try {
+                File worldFile = new File(worldFolder + File.separator + "ops.txt");
+                worldFile.createNewFile();
                 FileInputStream fis = new FileInputStream(worldFile);
                 BufferedReader br = new BufferedReader(new InputStreamReader(fis));
                 List<String> opsInWorld = new ArrayList<>();
@@ -63,8 +66,9 @@ public class OpDeOp implements Listener {
         for (World w : Main.getInstance().getServer().getWorlds()) {
             File worldFolder = new File(dataFolder + File.separator + "worlds" + File.separator + w.getName());
             worldFolder.mkdirs();
-            File worldFile = new File(worldFolder + File.separator + "ops.txt");
             try {
+                File worldFile = new File(worldFolder + File.separator + "ops.txt");
+                worldFile.createNewFile();
                 FileOutputStream fos = new FileOutputStream(worldFile);
                 BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
                 for (String op : ops.get(w.getName())) {
