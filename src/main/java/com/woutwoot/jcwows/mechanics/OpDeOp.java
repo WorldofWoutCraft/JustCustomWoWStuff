@@ -85,7 +85,13 @@ public class OpDeOp implements Listener {
 
     public void addGlobalOp(Player sender) {
         for (World w : Main.getInstance().getServer().getWorlds()) {
-            ops.get(w.getName()).add(sender.getName() + "(" + sender.getUniqueId() + ")");
+            if (ops.get(w.getName()) != null) {
+                ops.get(w.getName()).add(sender.getName() + "(" + sender.getUniqueId() + ")");
+            } else {
+                List<String> o = new ArrayList<>();
+                o.add(sender.getName() + "(" + sender.getUniqueId() + ")");
+                ops.put(w.getName(), o);
+            }
         }
     }
 }

