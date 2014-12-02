@@ -15,6 +15,7 @@ public class Main extends JavaPlugin {
 
     private static Main instance;
     private OpDeOp opDeop = new OpDeOp();
+    private OpDeOp opDeOp;
 
     public static Main getInstance() {
         return instance;
@@ -62,5 +63,9 @@ public class Main extends JavaPlugin {
         } catch (IllegalAccessException e) {
             return null;
         }
+    }
+
+    public OpDeOp getOpDeOp() {
+        return opDeOp;
     }
 }

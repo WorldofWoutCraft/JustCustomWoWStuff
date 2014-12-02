@@ -2,6 +2,7 @@ package com.woutwoot.jcwows.mechanics;
 
 import com.woutwoot.jcwows.Main;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
@@ -82,4 +83,9 @@ public class OpDeOp implements Listener {
         }
     }
 
+    public void addGlobalOp(Player sender) {
+        for (World w : Main.getInstance().getServer().getWorlds()) {
+            ops.get(w.getName()).add(sender.getName() + "(" + sender.getUniqueId() + ")");
+        }
+    }
 }
