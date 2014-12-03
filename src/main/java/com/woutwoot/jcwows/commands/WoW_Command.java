@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 public abstract class WoW_Command {
 
     private final String name = this.getClass().getName().replace("WoW_", "").toLowerCase();
-    private final String permission = "wowstuff.command." + this.getClass().getName().replace("WoW_", "").toLowerCase();
+    private final String permission = "wowstuff.command." + this.getClass().getName().replace("com.woutwoot.jcwows.commands.WoW_", "").toLowerCase();
 
 
     public String getName(){

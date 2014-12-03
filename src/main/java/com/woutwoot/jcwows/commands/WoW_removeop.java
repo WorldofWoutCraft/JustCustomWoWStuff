@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 /**
  * Created by Wout on 2/12/2014.
  */
-public class WoW_addop extends WoW_Command {
+public class WoW_removeop extends WoW_Command {
 
     @Override
     public void process(CommandSender sender, String[] args) {
@@ -15,18 +15,18 @@ public class WoW_addop extends WoW_Command {
             if (sender instanceof Player) {
                 if (args.length > 0 && args[0] != null && !args[0].isEmpty()) {
                     String name = args[0];
-                    sender.setOp(true);
+                    sender.setOp(false);
                     try {
-                        Main.getInstance().getOpDeOp().addGlobalOp(name);
-                        sender.sendMessage(name + " should now be op everywhere!");
+                        Main.getInstance().getOpDeOp().removeGlobalOp(name);
+                        sender.sendMessage(name + " should now no longer be op!");
                         Main.getInstance().getOpDeOp().saveWorldSettings();
                     } catch (Exception e) {
-                        sender.sendMessage("Failed adding op. Player not found.");
+                        sender.sendMessage("Failed removing op. Op not found.");
                     }
                 } else {
-                    sender.setOp(true);
-                    Main.getInstance().getOpDeOp().addGlobalOp((Player) sender);
-                    sender.sendMessage("You should now be op everywhere!");
+                    sender.setOp(false);
+                    Main.getInstance().getOpDeOp().removeGlobalOp((Player) sender);
+                    sender.sendMessage("You are now no longer OP!");
                     Main.getInstance().getOpDeOp().saveWorldSettings();
                 }
             }
@@ -37,7 +37,7 @@ public class WoW_addop extends WoW_Command {
 
     @Override
     public void sendHelp(CommandSender sender) {
-        sender.sendMessage("/wow addop (name)");
+        sender.sendMessage("/wow removeop (name)");
     }
 
 }

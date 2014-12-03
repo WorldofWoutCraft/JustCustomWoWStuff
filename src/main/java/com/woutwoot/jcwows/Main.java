@@ -1,5 +1,6 @@
 package com.woutwoot.jcwows;
 
+import com.woutwoot.jcwows.checkedevents.CommandPreProccessHandler;
 import com.woutwoot.jcwows.commands.WoW_Command;
 import com.woutwoot.jcwows.mechanics.OpDeOp;
 import org.bukkit.command.Command;
@@ -14,7 +15,9 @@ import java.util.Arrays;
 public class Main extends JavaPlugin {
 
     private static Main instance;
+
     private OpDeOp opDeop = new OpDeOp();
+    private CommandPreProccessHandler preProccessHandler = new CommandPreProccessHandler();
 
     public static Main getInstance() {
         return instance;
@@ -24,7 +27,7 @@ public class Main extends JavaPlugin {
     public void onEnable(){
         instance = this;
         opDeop.loadWorldSettings();
-        this.getServer().getPluginManager().registerEvents(opDeop, this);
+        registerEvents();
     }
 
     @Override
@@ -48,6 +51,11 @@ public class Main extends JavaPlugin {
             return true;
         }
         return false;
+    }
+
+    private void registerEvents() {
+        this.getServer().getPluginManager().registerEvents(opDeop, this);
+        this.getServer().getPluginManager().registerEvents(preProccessHandler, this);
     }
 
     private WoW_Command findCommand(String name){

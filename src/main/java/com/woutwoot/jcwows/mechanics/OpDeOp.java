@@ -1,6 +1,7 @@
 package com.woutwoot.jcwows.mechanics;
 
 import com.woutwoot.jcwows.Main;
+import com.woutwoot.jcwows.tools.UUIDFetcher;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,10 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Wout on 2/12/2014.
@@ -91,6 +89,37 @@ public class OpDeOp implements Listener {
                 List<String> o = new ArrayList<>();
                 o.add(sender.getName() + "(" + sender.getUniqueId() + ")");
                 ops.put(w.getName(), o);
+            }
+        }
+    }
+
+    public void addGlobalOp(String name) throws Exception {
+        UUID uuid = UUIDFetcher.getUUIDOf(name);
+        for (World w : Main.getInstance().getServer().getWorlds()) {
+            if (ops.get(w.getName()) != null) {
+                ops.get(w.getName()).add(name + "(" + uuid + ")");
+            } else {
+                List<String> o = new ArrayList<>();
+                o.add(name + "(" + uuid + ")");
+                ops.put(w.getName(), o);
+            }
+        }
+    }
+
+    public void removeGlobalOp(String name) throws Exception {
+        UUID uuid = UUIDFetcher.getUUIDOf(name);
+        for (World w : Main.getInstance().getServer().getWorlds()) {
+            if (ops.get(w.getName()) != null) {
+                ops.get(w.getName()).remove(name + "(" + uuid + ")");
+            }
+        }
+    }
+
+    public void removeGlobalOp(Player player) {
+        UUID uuid = player.getUniqueId();
+        for (World w : Main.getInstance().getServer().getWorlds()) {
+            if (ops.get(w.getName()) != null) {
+                ops.get(w.getName()).remove(player.getName() + "(" + uuid + ")");
             }
         }
     }
