@@ -38,15 +38,19 @@ public class Main extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("wow")) {
-            WoW_Command command = this.findCommand(args[0].toLowerCase());
-            if(command != null){
-                if (sender.hasPermission(command.getPermission())) {
-                    command.process(sender, Arrays.copyOfRange(args, 1, args.length));
-                }else{
-                    sender.sendMessage("You don't have permission for this command. (" + command.getPermission() + ")");
+            if (args.length > 0) {
+                WoW_Command command = this.findCommand(args[0].toLowerCase());
+                if (command != null) {
+                    if (sender.hasPermission(command.getPermission())) {
+                        command.process(sender, Arrays.copyOfRange(args, 1, args.length));
+                    } else {
+                        sender.sendMessage("You don't have permission for this command. (" + command.getPermission() + ")");
+                    }
+                } else {
+                    sender.sendMessage("Invalid argument.");
                 }
             } else {
-                sender.sendMessage("Invalid argument.");
+                sender.sendMessage("This command needs the right arguments!");
             }
             return true;
         }
