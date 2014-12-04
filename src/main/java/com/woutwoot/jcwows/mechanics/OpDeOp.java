@@ -21,14 +21,17 @@ public class OpDeOp implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onWorldChange(PlayerChangedWorldEvent event) {
         String name = event.getPlayer().getName();
-        String uuid = event.getPlayer().getUniqueId().toString();
+        UUID uuid = event.getPlayer().getUniqueId();
         String worldTo = event.getPlayer().getWorld().getName();
 
         if (ops != null && !ops.isEmpty()) {
-            if (ops.get(worldTo).contains(name + "(" + uuid + ")")) {
-                event.getPlayer().setOp(true);
-            } else if (event.getPlayer().isOp()) {
-                event.getPlayer().setOp(false);
+            List<String> worldOps = ops.get(worldTo);
+            if (worldOps != null) {
+                if (worldOps.contains(name + "(" + uuid + ")")) {
+                    event.getPlayer().setOp(true);
+                } else if (event.getPlayer().isOp()) {
+                    event.getPlayer().setOp(false);
+                }
             }
         }
     }
@@ -46,14 +49,17 @@ public class OpDeOp implements Listener {
                 FileInputStream fis = new FileInputStream(worldFile);
                 BufferedReader br = new BufferedReader(new InputStreamReader(fis));
                 List<String> opsInWorld = new ArrayList<>();
-                String line = null;
+                String line;
                 while ((line = br.readLine()) != null) {
-                    opsInWorld.add(line);
+                    if (!line.equals(""))
+                        opsInWorld.add(line);
                 }
                 br.close();
                 this.ops.put(w.getName(), opsInWorld);
             } catch (FileNotFoundException e) {
+                Main.log(e.getMessage());
             } catch (IOException e) {
+                Main.log(e.getMessage());
             }
         }
     }
@@ -76,7 +82,9 @@ public class OpDeOp implements Listener {
                 }
                 bw.close();
             } catch (FileNotFoundException e) {
+                Main.log(e.getMessage());
             } catch (IOException e) {
+                Main.log(e.getMessage());
             }
         }
     }

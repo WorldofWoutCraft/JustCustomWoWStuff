@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
+import java.util.logging.Level;
 
 /**
  * Created by Wout on 29/11/2014.
@@ -21,6 +22,10 @@ public class Main extends JavaPlugin {
 
     public static Main getInstance() {
         return instance;
+    }
+
+    public static void log(String message) {
+        instance.getLogger().log(Level.WARNING, message);
     }
 
     @Override
@@ -79,4 +84,5 @@ public class Main extends JavaPlugin {
     public OpDeOp getOpDeOp() {
         return opDeop;
     }
+
 }
