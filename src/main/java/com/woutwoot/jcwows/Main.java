@@ -2,7 +2,6 @@ package com.woutwoot.jcwows;
 
 import com.woutwoot.jcwows.checkedevents.CommandPreProccessHandler;
 import com.woutwoot.jcwows.commands.WoW_Command;
-import com.woutwoot.jcwows.mechanics.OpDeOp;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,7 +16,6 @@ public class Main extends JavaPlugin {
 
     private static Main instance;
 
-    private OpDeOp opDeop = new OpDeOp();
     private CommandPreProccessHandler preProccessHandler = new CommandPreProccessHandler();
 
     public static Main getInstance() {
@@ -31,13 +29,11 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable(){
         instance = this;
-        opDeop.loadWorldSettings();
         registerEvents();
     }
 
     @Override
     public void onDisable() {
-        opDeop.saveWorldSettings();
     }
 
     @Override
@@ -63,7 +59,6 @@ public class Main extends JavaPlugin {
     }
 
     private void registerEvents() {
-        this.getServer().getPluginManager().registerEvents(opDeop, this);
         this.getServer().getPluginManager().registerEvents(preProccessHandler, this);
     }
 
@@ -79,10 +74,6 @@ public class Main extends JavaPlugin {
         } catch (IllegalAccessException e) {
             return null;
         }
-    }
-
-    public OpDeOp getOpDeOp() {
-        return opDeop;
     }
 
 }

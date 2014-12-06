@@ -25,4 +25,5 @@ public class WoW_crash extends WoW_Command {
     public void sendHelp(CommandSender sender) {
         sender.sendMessage("/wow crash (playername)");
     }
+
 }
