@@ -1,6 +1,6 @@
 package com.woutwoot.jcwows;
 
-import com.woutwoot.jcwows.checkedevents.CommandPreProccessHandler;
+import com.woutwoot.jcwows.checkedevents.CommandPreProcessHandler;
 import com.woutwoot.jcwows.commands.WoW_Command;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -16,7 +16,7 @@ public class Main extends JavaPlugin {
 
     private static Main instance;
 
-    private CommandPreProccessHandler preProccessHandler = new CommandPreProccessHandler();
+    private CommandPreProcessHandler preProcessHandler = new CommandPreProcessHandler();
 
     public static Main getInstance() {
         return instance;
@@ -59,7 +59,7 @@ public class Main extends JavaPlugin {
     }
 
     private void registerEvents() {
-        this.getServer().getPluginManager().registerEvents(preProccessHandler, this);
+        this.getServer().getPluginManager().registerEvents(preProcessHandler, this);
     }
 
     private WoW_Command findCommand(String name){

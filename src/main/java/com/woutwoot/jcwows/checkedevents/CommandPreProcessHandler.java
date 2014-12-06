@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 /**
  * Created by woutwoot on 3/12/14.
  */
-public class CommandPreProccessHandler implements Listener {
+public class CommandPreProcessHandler implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onCommandPreProccess(PlayerCommandPreprocessEvent event) {
