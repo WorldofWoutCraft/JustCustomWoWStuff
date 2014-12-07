@@ -1,7 +1,10 @@
 package com.woutwoot.jcwows;
 
 import com.woutwoot.jcwows.checkedevents.CommandPreProcessHandler;
+import com.woutwoot.jcwows.checkedevents.PlayerChatHandler;
 import com.woutwoot.jcwows.commands.WoW_Command;
+import com.woutwoot.jcwows.tools.Lag;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,6 +20,7 @@ public class Main extends JavaPlugin {
     private static Main instance;
 
     private CommandPreProcessHandler preProcessHandler = new CommandPreProcessHandler();
+    private PlayerChatHandler playerChatHandler = new PlayerChatHandler();
 
     public static Main getInstance() {
         return instance;
@@ -29,6 +33,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable(){
         instance = this;
+        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
         registerEvents();
     }
 
@@ -60,6 +65,7 @@ public class Main extends JavaPlugin {
 
     private void registerEvents() {
         this.getServer().getPluginManager().registerEvents(preProcessHandler, this);
+        this.getServer().getPluginManager().registerEvents(playerChatHandler, this);
     }
 
     private WoW_Command findCommand(String name){
