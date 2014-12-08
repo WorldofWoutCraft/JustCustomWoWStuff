@@ -2,6 +2,7 @@ package com.woutwoot.jcwows.lookup;
 
 import com.woutwoot.jcwows.Main;
 import com.woutwoot.jcwows.tools.fishbans.BanService;
+import com.woutwoot.jcwows.tools.fishbans.Bans;
 import com.woutwoot.jcwows.tools.fishbans.FishBans;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -23,39 +24,42 @@ public class LookupTask implements Runnable {
     @Override
     public void run() {
         int numbans = 0;
-        BanService mcbans = FishBans.getAllBans(name).getService(FishBans.MCBANS);
-        if (mcbans != null) {
-            sender.sendMessage(ChatColor.AQUA + "----- MCBans bans -----");
-            for (String ban : mcbans.getCombinedList()) {
-                sender.sendMessage(ChatColor.DARK_RED + ban);
-                numbans++;
+        Bans bans = FishBans.getAllBans(name);
+        if (bans != null) {
+            BanService mcbans = bans.getService(FishBans.MCBANS);
+            if (mcbans != null) {
+                sender.sendMessage(ChatColor.AQUA + "----- MCBans bans -----");
+                for (String ban : mcbans.getCombinedList()) {
+                    sender.sendMessage(ChatColor.DARK_RED + ban);
+                    numbans++;
+                }
             }
-        }
 
-        BanService glizer = FishBans.getAllBans(name).getService(FishBans.GLIZER);
-        if (glizer != null) {
-            sender.sendMessage(ChatColor.AQUA + "----- Glizer bans -----");
-            for (String ban : glizer.getCombinedList()) {
-                sender.sendMessage(ChatColor.DARK_RED + ban);
-                numbans++;
+            BanService glizer = bans.getService(FishBans.GLIZER);
+            if (glizer != null) {
+                sender.sendMessage(ChatColor.AQUA + "----- Glizer bans -----");
+                for (String ban : glizer.getCombinedList()) {
+                    sender.sendMessage(ChatColor.DARK_RED + ban);
+                    numbans++;
+                }
             }
-        }
 
-        BanService mcbouncer = FishBans.getAllBans(name).getService(FishBans.MCBOUNCER);
-        if (mcbouncer != null) {
-            sender.sendMessage(ChatColor.AQUA + "--- MCbouncer bans ----");
-            for (String ban : mcbouncer.getCombinedList()) {
-                sender.sendMessage(ChatColor.DARK_RED + ban);
-                numbans++;
+            BanService mcbouncer = bans.getService(FishBans.MCBOUNCER);
+            if (mcbouncer != null) {
+                sender.sendMessage(ChatColor.AQUA + "--- MCbouncer bans ----");
+                for (String ban : mcbouncer.getCombinedList()) {
+                    sender.sendMessage(ChatColor.DARK_RED + ban);
+                    numbans++;
+                }
             }
-        }
 
-        BanService mcblockkit = FishBans.getAllBans(name).getService(FishBans.MCBLOCKIT);
-        if (mcblockkit != null) {
-            sender.sendMessage(ChatColor.AQUA + "--- MCBlockit bans ----");
-            for (String ban : mcblockkit.getCombinedList()) {
-                sender.sendMessage(ChatColor.DARK_RED + ban);
-                numbans++;
+            BanService mcblockkit = bans.getService(FishBans.MCBLOCKIT);
+            if (mcblockkit != null) {
+                sender.sendMessage(ChatColor.AQUA + "--- MCBlockit bans ----");
+                for (String ban : mcblockkit.getCombinedList()) {
+                    sender.sendMessage(ChatColor.DARK_RED + ban);
+                    numbans++;
+                }
             }
         }
 
