@@ -1,8 +1,8 @@
 package com.woutwoot.jcwows.lookup;
 
+import com.woutwoot.jcwows.Main;
 import com.woutwoot.jcwows.tools.fishbans.BanService;
 import com.woutwoot.jcwows.tools.fishbans.FishBans;
-import mkremins.fanciful.FancyMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -66,7 +66,7 @@ public class LookupTask implements Runnable {
         sender.sendMessage(ChatColor.AQUA + "-------- Google -------");
         Player p = (Player) sender;
         if (p != null)
-            p.sendRawMessage(new FancyMessage().text(name).color(ChatColor.BLUE).style(ChatColor.UNDERLINE).link("https://www.google.be/search?&q=" + name).toJSONString());
+            Main.getInstance().getServer().dispatchCommand(Main.getInstance().getServer().getConsoleSender(), "tellraw " + sender.getName() + " {\"text\":\"\",\"extra\":[{\"text\":\"Google Lookup - [NAME]\",\"color\":\"gold\",\"underlined\":\"true\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://www.google.be/search?&q=[NAME]\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"https://www.google.be/search?&q=[NAME]\",\"color\":\"aqua\"}]}}}]}".replace("[NAME]", name));
     }
 
 }

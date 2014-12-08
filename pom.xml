@@ -32,10 +32,6 @@
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
-        <repository>
-            <id>carrade-repo</id>
-            <url>http://depot.carrade.eu/maven2/</url>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -48,11 +44,6 @@
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <version>1.8-R0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>mkremins</groupId>
-            <artifactId>fanciful</artifactId>
-            <version>0.1.5</version>
         </dependency>
     </dependencies>
 
