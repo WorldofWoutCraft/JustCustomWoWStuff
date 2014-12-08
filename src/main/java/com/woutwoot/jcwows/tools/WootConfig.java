@@ -41,10 +41,10 @@ public class WootConfig {
         }
     }
 
-    public List<String> getConfigSeparatedByVerticalLine() {
+    public List<String> getConfigSeparatedByEquals() {
         List<String> res = new ArrayList<>();
         for (Map.Entry e : props.entrySet()) {
-            res.add(e.getKey() + "|" + e.getValue());
+            res.add(e.getKey() + "=" + e.getValue());
         }
         return res;
     }

@@ -29,12 +29,13 @@ public class SendListTask implements Runnable {
             return;
         }
         sender.sendMessage("User times:");
-        List<String> messages = config.getConfigSeparatedByVerticalLine();
+        List<String> messages = config.getConfigSeparatedByEquals();
         Collections.sort(messages, new ComparatorJWZ());
 
         for (String s : messages) {
-            String uuidAndName = s.split("|")[0];
-            int minutes = Integer.parseInt(s.split("|")[1]);
+            String uuidAndName = s.split("=")[0];
+
+            int minutes = Integer.parseInt(s.split("=")[1]);
             int hours = minutes / 60;
             minutes -= hours * 60;
 
