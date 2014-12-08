@@ -3,6 +3,7 @@ package com.woutwoot.jcwows;
 import com.woutwoot.jcwows.checkedevents.CommandPreProcessHandler;
 import com.woutwoot.jcwows.checkedevents.PlayerChatHandler;
 import com.woutwoot.jcwows.commands.WoW_Command;
+import com.woutwoot.jcwows.onlinetime.UpdateTimesTask;
 import com.woutwoot.jcwows.tools.Lag;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -34,6 +35,7 @@ public class Main extends JavaPlugin {
     public void onEnable(){
         instance = this;
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new UpdateTimesTask(this), 60L, 2400L);
         registerEvents();
     }
 
