@@ -13,9 +13,9 @@ public class WoW_lookup extends WoW_Command {
     @Override
     public void process(CommandSender sender, String[] args) {
         if (args[0] != null) {
-            Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new LookupTask(args[0], sender));
+            Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new LookupTask(args[0], sender));
         } else {
-            Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new LookupTask(sender.getName(), sender));
+            Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new LookupTask(sender.getName(), sender));
         }
     }
 
