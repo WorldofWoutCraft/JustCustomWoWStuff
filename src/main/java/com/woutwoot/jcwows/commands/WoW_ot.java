@@ -13,7 +13,7 @@ public class WoW_ot extends WoW_Command {
     @Override
     public void process(CommandSender sender, String[] args) {
         if (sender.hasPermission("onlinetime.use")) {
-            Bukkit.getScheduler().scheduleAsyncDelayedTask(Main.getInstance(), new SendListTask(sender));
+            Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new SendListTask(sender));
         } else {
             sender.sendMessage("No permissions. You need onlinetime.use");
         }
