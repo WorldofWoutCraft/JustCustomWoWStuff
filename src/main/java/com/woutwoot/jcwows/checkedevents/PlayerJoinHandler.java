@@ -12,9 +12,15 @@ import org.bukkit.event.player.PlayerJoinEvent;
  */
 public class PlayerJoinHandler implements Listener {
 
+    int old = 0;
+
     @EventHandler(ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent event) {
         int players = Main.getInstance().getServer().getOnlinePlayers().size();
+        if (players - old > 2) {
+            old = players;
+            return;
+        }
         if (players >= 10) {
             Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new PushBulletTask(players));
         }

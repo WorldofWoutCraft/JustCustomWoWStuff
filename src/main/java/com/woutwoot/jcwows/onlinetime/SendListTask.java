@@ -32,7 +32,11 @@ public class SendListTask implements Runnable {
         List<String> messages = config.getConfigSeparatedByEquals();
         Collections.sort(messages, new ComparatorJWZ());
 
+        int num = 0;
         for (String s : messages) {
+            if (num >= 10) {
+                return;
+            }
             String uuidAndName = s.split("=")[0];
 
             int minutes = Integer.parseInt(s.split("=")[1]);
@@ -50,6 +54,7 @@ public class SendListTask implements Runnable {
             } else {
                 sender.sendMessage(name + " - " + minutes + " minutes.");
             }
+            num++;
         }
 
     }
