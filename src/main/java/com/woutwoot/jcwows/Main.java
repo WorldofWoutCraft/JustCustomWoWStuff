@@ -38,7 +38,7 @@ public class Main extends JavaPlugin {
     public void onEnable(){
         instance = this;
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
-        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Announcer(), 1200L, 3600L);
+        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Announcer(), 1200L, 4000L);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new UpdateTimesTask(this), 60L, 2400L);
         registerEvents();
         this.getConfig().addDefault("pushbullet_API_key", "key");
