@@ -36,7 +36,15 @@ public class UpdateTimesTask implements Runnable {
         }
         for (Player p : plugin.getServer().getOnlinePlayers()) {
             String id = p.getUniqueId().toString() + "(" + p.getName() + ")";
-            this.config.setInteger(id, config.getInteger(id) + 2);
+            int newTime = config.getInteger(id) + 2;
+
+            if (newTime == 120) {
+                //if(Main.getReferralSystem().isReferedPlayer(p)){
+                //    Main.getReferralSystem().completeReferal(p);
+                //}
+            }
+
+            this.config.setInteger(id, newTime);
         }
     }
 

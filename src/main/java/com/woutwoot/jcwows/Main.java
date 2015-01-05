@@ -6,6 +6,7 @@ import com.woutwoot.jcwows.checkedevents.PlayerChatHandler;
 import com.woutwoot.jcwows.checkedevents.PlayerJoinHandler;
 import com.woutwoot.jcwows.commands.WoW_Command;
 import com.woutwoot.jcwows.onlinetime.UpdateTimesTask;
+import com.woutwoot.jcwows.refer.ReferralSystem;
 import com.woutwoot.jcwows.tools.Lag;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -21,7 +22,7 @@ import java.util.logging.Level;
 public class Main extends JavaPlugin {
 
     private static Main instance;
-
+    private static ReferralSystem referralSystem = new ReferralSystem();
     private CommandPreProcessHandler preProcessHandler = new CommandPreProcessHandler();
     private PlayerChatHandler playerChatHandler = new PlayerChatHandler();
     private PlayerJoinHandler playerJoinHandler = new PlayerJoinHandler();
@@ -32,6 +33,10 @@ public class Main extends JavaPlugin {
 
     public static void log(String message) {
         instance.getLogger().log(Level.WARNING, message);
+    }
+
+    public static ReferralSystem getReferralSystem() {
+        return referralSystem;
     }
 
     @Override
