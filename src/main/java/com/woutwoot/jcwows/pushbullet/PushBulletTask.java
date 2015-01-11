@@ -13,7 +13,6 @@ import java.io.IOException;
 public class PushBulletTask implements Runnable {
 
     private int players;
-    private int old = 0;
 
     public PushBulletTask(int players) {
         this.players = players;

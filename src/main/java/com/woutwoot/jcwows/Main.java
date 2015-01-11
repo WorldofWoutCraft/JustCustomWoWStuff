@@ -5,6 +5,8 @@ import com.woutwoot.jcwows.checkedevents.CommandPreProcessHandler;
 import com.woutwoot.jcwows.checkedevents.PlayerChatHandler;
 import com.woutwoot.jcwows.checkedevents.PlayerJoinHandler;
 import com.woutwoot.jcwows.commands.WoW_Command;
+import com.woutwoot.jcwows.flightpenalty.FlightPenaltyTask;
+import com.woutwoot.jcwows.flightpenalty.PlayerToggleFlightListener;
 import com.woutwoot.jcwows.onlinetime.UpdateTimesTask;
 import com.woutwoot.jcwows.refer.ReferralSystem;
 import com.woutwoot.jcwows.tools.Lag;
@@ -26,6 +28,7 @@ public class Main extends JavaPlugin {
     private CommandPreProcessHandler preProcessHandler = new CommandPreProcessHandler();
     private PlayerChatHandler playerChatHandler = new PlayerChatHandler();
     private PlayerJoinHandler playerJoinHandler = new PlayerJoinHandler();
+    private PlayerToggleFlightListener playerToggleFlightHandler = new PlayerToggleFlightListener();
 
     public static Main getInstance() {
         return instance;
@@ -44,6 +47,7 @@ public class Main extends JavaPlugin {
         instance = this;
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Announcer(), 1200L, 4000L);
+        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new FlightPenaltyTask(), 400L, 100L);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new UpdateTimesTask(this), 60L, 2400L);
         registerEvents();
         this.getConfig().addDefault("pushbullet_API_key", "key");
@@ -66,7 +70,17 @@ public class Main extends JavaPlugin {
                         sender.sendMessage("You don't have permission for this command. (" + command.getPermission() + ")");
                     }
                 } else {
-                    sender.sendMessage("Invalid argument.");
+                    sender.sendMessage("Command list:");
+                    sender.sendMessage("/wow ot (playername) - Get online time top 10 or for one player.");
+                    sender.sendMessage("/wow announcerestart - Announces server restart.");
+                    sender.sendMessage("/wow head (playername) - Same as /skull.");
+                    sender.sendMessage("/wow lookup (playername) - Searches for bans for this player.");
+                    sender.sendMessage("/wow register email - Registers email for newsletter.");
+                    sender.sendMessage("/wow refer generate - Generates unique referral code.");
+                    sender.sendMessage("/wow refer redeem (code) - Redeems unique referral code.");
+                    sender.sendMessage("/wow refer claim (code) - Claims referral prize.");
+                    sender.sendMessage("/wow crash (playername) - Tries to crash client by sending lots of particles.");
+                    sender.sendMessage("/wow wakeup (playername) - Plays lots of sounds to un-AFK someone.");
                 }
             } else {
                 sender.sendMessage("This command needs the right arguments!");
@@ -80,6 +94,7 @@ public class Main extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(preProcessHandler, this);
         this.getServer().getPluginManager().registerEvents(playerChatHandler, this);
         this.getServer().getPluginManager().registerEvents(playerJoinHandler, this);
+        this.getServer().getPluginManager().registerEvents(playerToggleFlightHandler, this);
     }
 
     private WoW_Command findCommand(String name){
