@@ -1,5 +1,6 @@
 package com.woutwoot.jcwows.flightpenalty;
 
+import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
@@ -13,9 +14,11 @@ public class PlayerToggleFlightListener implements Listener {
     @EventHandler
     public void onPlayerToggleFlight(PlayerToggleFlightEvent event) {
         if (event.isFlying()) {
-            FlightPenalty.flying.add(event.getPlayer().getUniqueId());
+            if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
+                FlightPenalty.flying.add(event.getPlayer().getUniqueId());
         } else {
-            FlightPenalty.flying.remove(event.getPlayer().getUniqueId());
+            if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
+                FlightPenalty.flying.remove(event.getPlayer().getUniqueId());
         }
     }
 
