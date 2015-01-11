@@ -14,10 +14,10 @@ public class PlayerToggleFlightListener implements Listener {
     @EventHandler
     public void onPlayerToggleFlight(PlayerToggleFlightEvent event) {
         if (event.isFlying()) {
-            if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
+            if (event.getPlayer().getGameMode() == GameMode.SURVIVAL || event.getPlayer().getGameMode() == GameMode.ADVENTURE)
                 FlightPenalty.flying.add(event.getPlayer().getUniqueId());
         } else {
-            if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
+            if (event.getPlayer().getGameMode() == GameMode.SURVIVAL || event.getPlayer().getGameMode() == GameMode.ADVENTURE)
                 FlightPenalty.flying.remove(event.getPlayer().getUniqueId());
         }
     }
