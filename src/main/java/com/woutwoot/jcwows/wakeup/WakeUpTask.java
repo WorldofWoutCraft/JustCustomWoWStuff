@@ -22,9 +22,5 @@ public class WakeUpTask implements Runnable {
     public void run() {
         player.playSound(player.getLocation(), sound, 2F, 0F);
         player.sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + "!!!!! WAKE UP !!!!!");
-        player.sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + "!!!!! WAKE UP !!!!!");
-        player.sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + "!!!!! WAKE UP !!!!!");
-        player.sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + "!!!!! WAKE UP !!!!!");
-        player.sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + "!!!!! WAKE UP !!!!!");
     }
 }
