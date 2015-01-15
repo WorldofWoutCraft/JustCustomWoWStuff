@@ -46,7 +46,7 @@ public class Main extends JavaPlugin {
     public void onEnable(){
         instance = this;
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 100L, 1L);
-        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Announcer(), 1200L, 4000L);
+        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Announcer(), 1200L, 8000L);
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new FlightPenaltyTask(), 400L, 100L);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new UpdateTimesTask(this), 60L, 2400L);
         registerEvents();

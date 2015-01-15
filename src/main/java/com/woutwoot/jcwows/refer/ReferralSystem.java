@@ -2,10 +2,7 @@ package com.woutwoot.jcwows.refer;
 
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author woutwoot
@@ -15,7 +12,7 @@ public class ReferralSystem {
 
     private Map<UUID, Integer> codes = new HashMap<>();
     private Map<Integer, UUID> redeems = new HashMap<>();
-    private Map<Integer, UUID> claims = new HashMap<>();
+    private Set<UUID> done = new HashSet<>();
 
     public int generate(Player p) {
         int code = new Random().nextInt(Integer.MAX_VALUE);
@@ -24,11 +21,18 @@ public class ReferralSystem {
     }
 
     public void redeem(Player p, String s) {
-
+        int code = Integer.parseInt(s);
+        redeems.put(code, p.getUniqueId());
     }
 
     public void claim(Player p, String s) {
-
+        int code = Integer.parseInt(s);
+        if (redeems.containsKey(code)) {
+            done.add(p.getUniqueId());
+            done.add(redeems.get(code));
+            redeems.remove(code);
+            codes.remove(p.getUniqueId());
+        }
     }
 
 }
