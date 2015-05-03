@@ -2,7 +2,6 @@ package com.woutwoot.jcwows.checkedevents;
 
 import com.woutwoot.jcwows.Main;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -28,18 +27,21 @@ public class PlayerJoinHandler implements Listener {
         if (players >= 10) {
             //Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new PushBulletTask(players)); //TODO: Fix spam
         }
+        if (event.getPlayer().getName().equals("woutwoot") || event.getPlayer().getName().equals("MisterChippy")) {
+            CommandPreProcessHandler.log.add(event.getPlayer().getUniqueId());
+        }
     }
 
     @EventHandler
     public void onPlayerLogin(PlayerLoginEvent event) {
         Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new HostNameTask(event.getHostname()));
-        if (!event.getHostname().equalsIgnoreCase("mc.woutwoot.com:25565")) {
+        /*if (!event.getHostname().equalsIgnoreCase("mc.woutwoot.com:25565")) {
             String msg = ChatColor.DARK_RED + "" + ChatColor.BOLD;
             msg += "!WARNING! We are changing our IP address. Please reconnect using the new IP: " + ChatColor.UNDERLINE + "mc.woutwoot.com";
             msg += ChatColor.RESET + "" + ChatColor.DARK_RED + "" + ChatColor.BOLD;
             msg += " If you've already done that, ignore this message. Otherwise, change it! The old IP's will stop working.";
             Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new DelayedMessageTask(msg, event.getPlayer()));
-        }
+        }*/
     }
 
     private class DelayedMessageTask implements Runnable {

@@ -15,7 +15,7 @@ public class Announcer implements Runnable {
     @Override
     public void run() {
         if (!Bukkit.getServer().getOnlinePlayers().isEmpty())
-            Main.getInstance().getServer().broadcastMessage(tag + "Check out our website! " + ChatColor.GOLD + ChatColor.UNDERLINE + "http://woutwoot.com/");
+            Main.getInstance().getServer().broadcastMessage(tag + "Want to protect your land? Use a golden shovel!");
     }
 
 }
